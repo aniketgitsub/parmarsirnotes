@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>General Science Notes Dashboard</title>
     <style>
-        /* Base CSS Styling (Desktop/Tablet) */
+        /* Base CSS Styling (COMMON for All Devices) */
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
         body{
             min-height:100vh;
@@ -14,51 +14,69 @@
             justify-content:center;
             align-items:center;
             background:linear-gradient(135deg,#2c3e50,#4ca1af);
-            padding: 0 10px;
+            padding: 15px 10px;
+            overflow-y: auto;
         }
 
-        /* Dashboard Container */
+        /* Dashboard Container - FIXED TO SINGLE COLUMN (All Devices) */
         .dashboard{
             display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-            gap:18px;
-            max-width:800px;
+            grid-template-columns: 1fr; /* केवल एक कॉलम */
+            gap:15px;
+            max-width: 500px; 
             padding:25px;
             margin-bottom: 35px;
-            transform: scale(0.9);
-            opacity: 0; 
-            animation: fadeInScale 0.8s ease-out forwards;
-            animation-delay: 0.2s; 
             width: 100%;
+            /* एनीमेशन और ट्रांसफॉर्म हटाया गया */
+            opacity: 1; 
+            transform: none; 
+            animation: none; 
         }
-        @keyframes fadeInScale {0% { opacity: 0; transform: scale(0.9) translateY(20px); }100% { opacity: 1; transform: scale(1) translateY(0); }}
 
-        /* Card Styles and VIBGYOR Colors */
-        .card{height:110px;width:140px;border-radius:12px;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),box-shadow 0.3s ease,background 0.3s ease;box-shadow:0 6px 15px rgba(0,0,0,0.2);position: relative;overflow: hidden;}
-        .card:hover{transform:translateY(-10px) scale(1.08);box-shadow:0 18px 40px rgba(0,0,0,0.35);}
-        .violet{background:linear-gradient(145deg,#a52dee,#7d00e5);animation: pulseViolet 2s infinite alternate;}
-        .indigo{background:linear-gradient(145deg,#5f4bff,#3f2b8a);animation: pulseIndigo 2s infinite alternate;}
-        .blue{background:linear-gradient(145deg,#22aeff,#0a78d0);animation: pulseBlue 2s infinite alternate;}
-        .green{background:linear-gradient(145deg,#3ee08b,#279e65);animation: pulseGreen 2s infinite alternate;}
-        .yellow{background:linear-gradient(145deg,#ffd700,#e5b800);color:#333;animation: pulseYellow 2s infinite alternate;}
-        .orange{background:linear-gradient(145deg,#ff8c00,#e06c00);color:#333;animation: pulseOrange 2s infinite alternate;}
-        .red{background:linear-gradient(145deg,#ff4757,#e02e3a);animation: pulseRed 2s infinite alternate;}
-        @keyframes pulseViolet {0%{box-shadow:0 0 5px #a52dee;}100%{box-shadow:0 0 15px #a52dee;}}
-        @keyframes pulseIndigo {0%{box-shadow:0 0 5px #5f4bff;}100%{box-shadow:0 0 15px #5f4bff;}}
-        @keyframes pulseBlue {0%{box-shadow:0 0 5px #22aeff;}100%{box-shadow:0 0 15px #22aeff;}}
-        @keyframes pulseGreen {0%{box-shadow:0 0 5px #3ee08b;}100%{box-shadow:0 0 15px #3ee08b;}}
-        @keyframes pulseYellow {0%{box-shadow:0 0 5px #ffd700;}100%{box-shadow:0 0 15px #ffd700;}}
-        @keyframes pulseOrange {0%{box-shadow:0 0 5px #ff8c00;}100%{box-shadow:0 0 15px #ff8c00;}}
-        @keyframes pulseRed {0%{box-shadow:0 0 5px #ff4757;}100%{box-shadow:0 0 15px #ff4757;}}
+        /* Card Styles */
+        .card{
+            width: 100%; /* कार्ड्स पूरी चौड़ाई लेंगे */
+            height: 90px; 
+            border-radius:12px;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),box-shadow 0.3s ease,background 0.3s ease;box-shadow:0 6px 15px rgba(0,0,0,0.2);position: relative;overflow: hidden;
+        }
+        .card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 12px 25px rgba(0,0,0,0.3);}
+        .violet{background:linear-gradient(145deg,#a52dee,#7d00e5);}
+        .indigo{background:linear-gradient(145deg,#5f4bff,#3f2b8a);}
+        .blue{background:linear-gradient(145deg,#22aeff,#0a78d0);}
+        .green{background:linear-gradient(145deg,#3ee08b,#279e65);}
+        .yellow{background:linear-gradient(145deg,#ffd700,#e5b800);color:#333;}
+        .orange{background:linear-gradient(145deg,#ff8c00,#e06c00);color:#333;}
+        .red{background:linear-gradient(145deg,#ff4757,#e02e3a);}
         
-        h3{font-size:15px;font-weight:700;}
-        .hint{font-size:11px;opacity:0.92;margin-top:6px;}
+        h3{font-size:17px;font-weight:700;}
+        .hint{font-size:13px;opacity:0.92;margin-top:4px;}
         
-        /* Modal Styles */
-        .modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:opacity 0.4s ease, visibility 0.4s ease;}
+        /* Modal Styles (Simple Pop-up) */
+        .modal-bg{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.7);
+            backdrop-filter:blur(5px);
+            display:flex;
+            justify-content:center;align-items:center;
+            opacity:0;visibility:hidden;
+            transition:opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 100;
+        }
         .modal-bg.active{opacity:1;visibility:visible;}
-        .modal{background:white;color:#333;padding:25px;border-radius:15px;width:340px;max-height:85vh;overflow-y:auto;box-shadow:0 15px 35px rgba(0,0,0,0.4);animation:popup 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
-        @keyframes popup{0%{transform:scale(0.6);opacity:0;}100%{transform:scale(1);opacity:1;}}
+        
+        .modal{
+            background:white;color:#333;padding:25px;border-radius:15px;
+            width:90%; /* मोबाइल पर 90% चौड़ाई */
+            max-width:400px;
+            max-height:85vh;overflow-y:auto;
+            box-shadow:0 15px 35px rgba(0,0,0,0.4);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .modal-bg.active .modal {
+            transform: scale(1);
+        }
+        
         .modal h2{text-align:center;margin-bottom:20px;font-size:22px;color:#2c3e50;}
         .topic-list{display:flex;flex-direction:column;gap:12px;}
         .topic-btn{padding:14px;background:linear-gradient(135deg,#3498db,#2980b9);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;text-decoration:none;text-align:center;transition:transform 0.25s ease-out, background 0.25s ease-out;box-shadow:0 4px 8px rgba(0,0,0,0.15);}
@@ -67,71 +85,20 @@
         .close-btn:hover {background:#c0392b;transform: translateY(-2px);}
 
         /* Footer Style */
-        .footer {margin-top: auto;padding: 15px 40px;color: rgba(255, 255, 255, 0.7);font-size: 13px;background: rgba(0,0,0,0.3);width: 100%;position: absolute;bottom: 0;left: 0;display: flex;justify-content: space-between;align-items: center;}
-        .footer-right {font-weight: 600;color: rgba(255, 255, 255, 0.9);}
+        .footer {margin-top: auto;padding: 15px 40px;color: rgba(255, 255, 255, 0.7);font-size: 13px;background: rgba(0,0,0,0.3);width: 100%;display: flex;justify-content: space-between;align-items: center;position: relative;}
 
-        /* ======================================= */
-        /* MEDIA QUERIES FOR MOBILE OPTIMIZATION */
-        /* ======================================= */
+        /* Responsive Adjustments (Footer only) */
         @media (max-width: 600px) {
-            body {
-                justify-content: flex-start; 
-                padding: 15px 10px 0 10px;
-            }
-            
-            /* Hide absolute footer and show a static one for mobile scrolling */
-            .footer-desktop {
-                display: none;
-            }
-            .footer-mobile {
-                display: flex;
-            }
-
-            .dashboard {
-                /* FIX: Two columns for mobile */
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 12px;
-                padding: 10px;
-                max-width: 100%;
-                margin-top: 15px;
-                margin-bottom: 20px;
-                transform: scale(1);
-                animation: none;
-            }
-
-            .card {
-                width: 100%; /* Card takes full width of its column */
-                height: 100px; /* Slightly taller for better touch target */
-                margin: 0;
-                justify-content: center; 
-            }
-            
-            h3 {
-                font-size: 15px; /* Keep font size same as desktop or slightly larger */
-            }
-            
-            /* Footer stacks vertically on mobile */
             .footer {
-                position: relative; 
                 padding: 10px 20px;
                 font-size: 11px;
                 flex-direction: column; 
-                margin-top: 20px;
             }
-            
             .footer-left, .footer-right {
                 text-align: center;
                 width: 100%;
                 margin: 2px 0;
             }
-        }
-
-        /* Default (Desktop) Footer visibility */
-        .footer-mobile {
-            display: none;
-        }
-        .footer-desktop {
-            display: flex;
         }
     </style>
 </head>
@@ -146,16 +113,7 @@
         </div>
     </div>
 
-    <footer class="footer footer-desktop">
-        <div class="footer-left">
-            This is for education purpose only.
-        </div>
-        <div class="footer-right">
-            Thank you Parmar Sir 🙏
-        </div>
-    </footer>
-    
-    <footer class="footer footer-mobile">
+    <footer class="footer">
         <div class="footer-left">
             This is for education purpose only.
         </div>
@@ -164,58 +122,63 @@
         </div>
     </footer>
 
-    <script src="notesData.js"></script>
+    <script src="notesData.js"></script> 
 
     <script>
-        // Main Logic (Unchanged)
         const dashboard = document.getElementById('dashboard');
         const modalBg = document.getElementById('modal-bg');
         const modalTitle = document.getElementById('modal-title');
         const topicList = document.getElementById('topic-list');
         const closeBtn = document.getElementById('close-btn');
 
-        subjects.forEach((sub, idx) => {
-            const card = document.createElement('div');
-            card.className = `card ${sub.color}`;
-            card.dataset.index = idx;
-
-            const title = document.createElement('h3');
-            title.textContent = sub.title;
-            const hint = document.createElement('div');
-            hint.className = 'hint';
-            hint.textContent = `Total Notes: ${sub.notes.length}`; 
-            
-            card.appendChild(title);
-            card.appendChild(hint);
-            dashboard.appendChild(card);
-            
-            card.style.animationDelay = `${0.3 + idx * 0.05}s`;
-            
-            card.addEventListener('click', () => {
-                openModal(sub);
-            });
-        });
-
-        function openModal(subject){
-            modalTitle.textContent = subject.title + ' Notes';
-            topicList.innerHTML = '';
-            
-            subject.notes.forEach(note => {
-                const link = document.createElement('a');
-                link.className = 'topic-btn';
-                link.textContent = note.name;
+        // Check if the 'subjects' variable is loaded from notesData.js
+        if (typeof subjects !== 'undefined') {
+             subjects.forEach((sub) => { 
+                const card = document.createElement('div');
+                card.className = `card ${sub.color}`;
                 
-                link.href = note.link; 
-                link.target = '_blank';
+                const title = document.createElement('h3');
+                title.textContent = sub.title;
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = `Total Notes: ${sub.notes.length}`; 
                 
-                topicList.appendChild(link);
+                card.appendChild(title);
+                card.appendChild(hint);
+                dashboard.appendChild(card);
+
+                card.addEventListener('click', () => {
+                    openModal(sub);
+                });
             });
+
+            function openModal(subject){
+                modalTitle.textContent = subject.title + ' Notes';
+                topicList.innerHTML = '';
+                
+                subject.notes.forEach(note => {
+                    const link = document.createElement('a');
+                    link.className = 'topic-btn';
+                    link.textContent = note.name;
+                    
+                    link.href = note.link; 
+                    link.target = '_blank';
+                    
+                    topicList.appendChild(link);
+                });
+                
+                // Show modal
+                modalBg.classList.add('active');
+            }
+
+            // Close modal functions
+            closeBtn.addEventListener('click',()=>modalBg.classList.remove('active'));
+            // Close modal when clicking outside
+            modalBg.addEventListener('click',(e)=>{if(e.target===modalBg) modalBg.classList.remove('active');});
             
-            modalBg.classList.add('active');
+        } else {
+             dashboard.innerHTML = "<h2 style='color: white; text-align: center; margin-top: 50px;'>Notes failed to load. Please check notesData.js.</h2>";
         }
-
-        closeBtn.addEventListener('click',()=>modalBg.classList.remove('active'));
-        modalBg.addEventListener('click',(e)=>{if(e.target===modalBg) modalBg.classList.remove('active');});
     </script>
 </body>
 </html>
