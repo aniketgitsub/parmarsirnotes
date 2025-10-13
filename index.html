@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>General Science Notes Dashboard</title>
+    <style>
+        /* CSS Styling - No need to change this */
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#2c3e50,#4ca1af);overflow:hidden;}
+        .dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px;max-width:760px;padding:20px;}
+        .card{height:110px;width:140px;border-radius:12px;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:transform 0.22s,box-shadow 0.22s;}
+        .card:hover{transform:translateY(-8px) scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,0.28);}
+        .violet{background:linear-gradient(135deg,#8e2de2,#4a00e0);}
+        .indigo{background:linear-gradient(135deg,#4b6cb7,#182848);}
+        .blue{background:linear-gradient(135deg,#2193b0,#6dd5ed);}
+        .green{background:linear-gradient(135deg,#56ab2f,#a8e063);}
+        .yellow{background:linear-gradient(135deg,#f7971e,#ffd200);color:#062b17;}
+        .orange{background:linear-gradient(135deg,#e65c00,#f9d423);color:#3b2a09;}
+        .red{background:linear-gradient(135deg,#cb2d3e,#ef473a);}
+        h3{font-size:15px;font-weight:700;}
+        .hint{font-size:11px;opacity:0.92;margin-top:6px;}
+        .modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:opacity 0.3s ease, visibility 0.3s ease;}
+        .modal-bg.active{opacity:1;visibility:visible;}
+        .modal{background:white;color:#333;padding:20px;border-radius:12px;width:320px;max-height:80vh;overflow-y:auto;box-shadow:0 10px 25px rgba(0,0,0,0.3);animation:popup 0.35s ease;}
+        @keyframes popup{0%{transform:scale(0.7);opacity:0;}100%{transform:scale(1);opacity:1;}}
+        .modal h2{text-align:center;margin-bottom:15px;font-size:20px;}
+        .topic-list{display:flex;flex-direction:column;gap:10px;}
+        .topic-btn{padding:12px;background:linear-gradient(135deg,#4CAF50,#2E7D32);color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;text-decoration:none;text-align:center;transition:transform 0.2s;}
+        .topic-btn:hover{transform:scale(1.02);}
+        .close-btn{margin-top:15px;background:#e74c3c;color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;width:100%;}
+    </style>
+</head>
+<body>
+    <div class="dashboard" id="dashboard"></div>
+
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal">
+            <h2 id="modal-title"></h2>
+            <div class="topic-list" id="topic-list"></div>
+            <button class="close-btn" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="notesData.js"></script>
+
+    <script>
+        // यह लॉजिक 'notesData.js' से 'subjects' variable को सीधे उपयोग करेगा।
+        const dashboard = document.getElementById('dashboard');
+        const modalBg = document.getElementById('modal-bg');
+        const modalTitle = document.getElementById('modal-title');
+        const topicList = document.getElementById('topic-list');
+        const closeBtn = document.getElementById('close-btn');
+
+        // 1. कार्ड्स बनाना (लूप subjects पर चलेगा)
+        subjects.forEach((sub, idx) => {
+            const card = document.createElement('div');
+            card.className = `card ${sub.color}`;
+            card.dataset.index = idx;
+
+            const title = document.createElement('h3');
+            title.textContent = sub.title;
+            const hint = document.createElement('div');
+            hint.className = 'hint';
+            hint.textContent = `Total Notes: ${sub.notes.length}`; 
+            
+            card.appendChild(title);
+            card.appendChild(hint);
+            dashboard.appendChild(card);
+
+            card.addEventListener('click', () => {
+                openModal(sub);
+            });
+        });
+
+        // 2. पॉपअप खोलना और नोट्स लोड करना
+        function openModal(subject){
+            modalTitle.textContent = subject.title + ' Notes';
+            topicList.innerHTML = '';
+            
+            subject.notes.forEach(note => {
+                const link = document.createElement('a');
+                link.className = 'topic-btn';
+                link.textContent = note.name; // केवल नोट का नाम दिखेगा
+                
+                link.href = note.link; 
+                link.target = '_blank';
+                
+                topicList.appendChild(link);
+            });
+            
+            modalBg.classList.add('active');
+        }
+
+        // 3. पॉपअप बंद करना
+        closeBtn.addEventListener('click',()=>modalBg.classList.remove('active'));
+        modalBg.addEventListener('click',(e)=>{if(e.target===modalBg) modalBg.classList.remove('active');});
+    </script>
+</body>
+</html>
