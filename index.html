@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>General Science Notes Dashboard</title>
     <style>
-        /* CSS Styling: VIBGYOR, Animations, and Layout */
+        /* Base CSS Styling (Desktop/Tablet) */
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
         body{
-            height:100vh;
+            min-height:100vh;
             display:flex;
-            flex-direction: column; /* Changed for footer */
+            flex-direction: column;
             justify-content:center;
             align-items:center;
             background:linear-gradient(135deg,#2c3e50,#4ca1af);
-            overflow:hidden;
+            padding: 0 10px;
         }
 
         /* Dashboard Container */
@@ -24,18 +24,18 @@
             gap:18px;
             max-width:800px;
             padding:25px;
-            margin-bottom: 35px; /* Space for footer */
+            margin-bottom: 35px;
             transform: scale(0.9);
             opacity: 0; 
             animation: fadeInScale 0.8s ease-out forwards;
             animation-delay: 0.2s; 
+            width: 100%;
         }
         @keyframes fadeInScale {0% { opacity: 0; transform: scale(0.9) translateY(20px); }100% { opacity: 1; transform: scale(1) translateY(0); }}
 
         /* Card Styles and VIBGYOR Colors */
         .card{height:110px;width:140px;border-radius:12px;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),box-shadow 0.3s ease,background 0.3s ease;box-shadow:0 6px 15px rgba(0,0,0,0.2);position: relative;overflow: hidden;}
         .card:hover{transform:translateY(-10px) scale(1.08);box-shadow:0 18px 40px rgba(0,0,0,0.35);}
-        /* VIBGYOR GRADIANT COLORS */
         .violet{background:linear-gradient(145deg,#a52dee,#7d00e5);animation: pulseViolet 2s infinite alternate;}
         .indigo{background:linear-gradient(145deg,#5f4bff,#3f2b8a);animation: pulseIndigo 2s infinite alternate;}
         .blue{background:linear-gradient(145deg,#22aeff,#0a78d0);animation: pulseBlue 2s infinite alternate;}
@@ -43,7 +43,6 @@
         .yellow{background:linear-gradient(145deg,#ffd700,#e5b800);color:#333;animation: pulseYellow 2s infinite alternate;}
         .orange{background:linear-gradient(145deg,#ff8c00,#e06c00);color:#333;animation: pulseOrange 2s infinite alternate;}
         .red{background:linear-gradient(145deg,#ff4757,#e02e3a);animation: pulseRed 2s infinite alternate;}
-        /* PULSE ANIMATION */
         @keyframes pulseViolet {0%{box-shadow:0 0 5px #a52dee;}100%{box-shadow:0 0 15px #a52dee;}}
         @keyframes pulseIndigo {0%{box-shadow:0 0 5px #5f4bff;}100%{box-shadow:0 0 15px #5f4bff;}}
         @keyframes pulseBlue {0%{box-shadow:0 0 5px #22aeff;}100%{box-shadow:0 0 15px #22aeff;}}
@@ -67,24 +66,72 @@
         .close-btn{margin-top:20px;background:#e74c3c;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;width:100%;transition:background 0.2s ease, transform 0.2s ease;}
         .close-btn:hover {background:#c0392b;transform: translateY(-2px);}
 
-        /* Footer Style - Split Left/Right */
-        .footer {
-            margin-top: auto;
-            padding: 15px 40px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
-            background: rgba(0,0,0,0.3);
-            width: 100%;
-            position: absolute; 
-            bottom: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Footer Style */
+        .footer {margin-top: auto;padding: 15px 40px;color: rgba(255, 255, 255, 0.7);font-size: 13px;background: rgba(0,0,0,0.3);width: 100%;position: absolute;bottom: 0;left: 0;display: flex;justify-content: space-between;align-items: center;}
+        .footer-right {font-weight: 600;color: rgba(255, 255, 255, 0.9);}
+
+        /* ======================================= */
+        /* MEDIA QUERIES FOR MOBILE OPTIMIZATION */
+        /* ======================================= */
+        @media (max-width: 600px) {
+            body {
+                justify-content: flex-start; 
+                padding: 15px 10px 0 10px;
+            }
+            
+            /* Hide absolute footer and show a static one for mobile scrolling */
+            .footer-desktop {
+                display: none;
+            }
+            .footer-mobile {
+                display: flex;
+            }
+
+            .dashboard {
+                /* FIX: Two columns for mobile */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 12px;
+                padding: 10px;
+                max-width: 100%;
+                margin-top: 15px;
+                margin-bottom: 20px;
+                transform: scale(1);
+                animation: none;
+            }
+
+            .card {
+                width: 100%; /* Card takes full width of its column */
+                height: 100px; /* Slightly taller for better touch target */
+                margin: 0;
+                justify-content: center; 
+            }
+            
+            h3 {
+                font-size: 15px; /* Keep font size same as desktop or slightly larger */
+            }
+            
+            /* Footer stacks vertically on mobile */
+            .footer {
+                position: relative; 
+                padding: 10px 20px;
+                font-size: 11px;
+                flex-direction: column; 
+                margin-top: 20px;
+            }
+            
+            .footer-left, .footer-right {
+                text-align: center;
+                width: 100%;
+                margin: 2px 0;
+            }
         }
-        .footer-right {
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
+
+        /* Default (Desktop) Footer visibility */
+        .footer-mobile {
+            display: none;
+        }
+        .footer-desktop {
+            display: flex;
         }
     </style>
 </head>
@@ -99,7 +146,16 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer footer-desktop">
+        <div class="footer-left">
+            This is for education purpose only.
+        </div>
+        <div class="footer-right">
+            Thank you Parmar Sir 🙏
+        </div>
+    </footer>
+    
+    <footer class="footer footer-mobile">
         <div class="footer-left">
             This is for education purpose only.
         </div>
@@ -111,14 +167,13 @@
     <script src="notesData.js"></script>
 
     <script>
-        // यह लॉजिक 'notesData.js' से 'subjects' variable को सीधे उपयोग करेगा।
+        // Main Logic (Unchanged)
         const dashboard = document.getElementById('dashboard');
         const modalBg = document.getElementById('modal-bg');
         const modalTitle = document.getElementById('modal-title');
         const topicList = document.getElementById('topic-list');
         const closeBtn = document.getElementById('close-btn');
 
-        // 1. कार्ड्स बनाना (VIBGYOR Animation Timing Added)
         subjects.forEach((sub, idx) => {
             const card = document.createElement('div');
             card.className = `card ${sub.color}`;
@@ -134,7 +189,6 @@
             card.appendChild(hint);
             dashboard.appendChild(card);
             
-            // Staggered appearance effect
             card.style.animationDelay = `${0.3 + idx * 0.05}s`;
             
             card.addEventListener('click', () => {
@@ -142,7 +196,6 @@
             });
         });
 
-        // 2. पॉपअप खोलना और नोट्स लोड करना
         function openModal(subject){
             modalTitle.textContent = subject.title + ' Notes';
             topicList.innerHTML = '';
@@ -161,7 +214,6 @@
             modalBg.classList.add('active');
         }
 
-        // 3. पॉपअप बंद करना
         closeBtn.addEventListener('click',()=>modalBg.classList.remove('active'));
         modalBg.addEventListener('click',(e)=>{if(e.target===modalBg) modalBg.classList.remove('active');});
     </script>
