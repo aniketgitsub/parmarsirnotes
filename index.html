@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>General Science Notes Dashboard</title>
+    <style>
+        /* Base CSS Styling (COMMON for All Devices) */
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{
+            min-height:100vh;
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#2c3e50,#4ca1af);
+            padding: 15px 10px;
+            overflow-y: auto;
+        }
+
+        /* Dashboard Container - FIXED TO SINGLE COLUMN (All Devices) */
+        .dashboard{
+            display:grid;
+            grid-template-columns: 1fr; /* केवल एक कॉलम */
+            gap:15px;
+            max-width: 500px; 
+            padding:25px;
+            margin-bottom: 35px;
+            width: 100%;
+            /* एनीमेशन और ट्रांसफॉर्म हटाया गया */
+            opacity: 1; 
+            transform: none; 
+            animation: none; 
+        }
+
+        /* Card Styles */
+        .card{
+            width: 100%; /* कार्ड्स पूरी चौड़ाई लेंगे */
+            height: 90px; 
+            border-radius:12px;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),box-shadow 0.3s ease,background 0.3s ease;box-shadow:0 6px 15px rgba(0,0,0,0.2);position: relative;overflow: hidden;
+        }
+        .card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 12px 25px rgba(0,0,0,0.3);}
+        .violet{background:linear-gradient(145deg,#a52dee,#7d00e5);}
+        .indigo{background:linear-gradient(145deg,#5f4bff,#3f2b8a);}
+        .blue{background:linear-gradient(145deg,#22aeff,#0a78d0);}
+        .green{background:linear-gradient(145deg,#3ee08b,#279e65);}
+        .yellow{background:linear-gradient(145deg,#ffd700,#e5b800);color:#333;}
+        .orange{background:linear-gradient(145deg,#ff8c00,#e06c00);color:#333;}
+        .red{background:linear-gradient(145deg,#ff4757,#e02e3a);}
+        
+        h3{font-size:17px;font-weight:700;}
+        .hint{font-size:13px;opacity:0.92;margin-top:4px;}
+        
+        /* Modal Styles (Simple Pop-up) */
+        .modal-bg{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.7);
+            backdrop-filter:blur(5px);
+            display:flex;
+            justify-content:center;align-items:center;
+            opacity:0;visibility:hidden;
+            transition:opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 100;
+        }
+        .modal-bg.active{opacity:1;visibility:visible;}
+        
+        .modal{
+            background:white;color:#333;padding:25px;border-radius:15px;
+            width:90%; /* मोबाइल पर 90% चौड़ाई */
+            max-width:400px;
+            max-height:85vh;overflow-y:auto;
+            box-shadow:0 15px 35px rgba(0,0,0,0.4);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .modal-bg.active .modal {
+            transform: scale(1);
+        }
+        
+        .modal h2{text-align:center;margin-bottom:20px;font-size:22px;color:#2c3e50;}
+        .topic-list{display:flex;flex-direction:column;gap:12px;}
+        .topic-btn{padding:14px;background:linear-gradient(135deg,#3498db,#2980b9);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;text-decoration:none;text-align:center;transition:transform 0.25s ease-out, background 0.25s ease-out;box-shadow:0 4px 8px rgba(0,0,0,0.15);}
+        .topic-btn:hover{transform:scale(1.03);background:linear-gradient(135deg,#2980b9,#3498db);box-shadow:0 6px 12px rgba(0,0,0,0.25);}
+        .close-btn{margin-top:20px;background:#e74c3c;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;width:100%;transition:background 0.2s ease, transform 0.2s ease;}
+        .close-btn:hover {background:#c0392b;transform: translateY(-2px);}
+
+        /* Footer Style */
+        .footer {margin-top: auto;padding: 15px 40px;color: rgba(255, 255, 255, 0.7);font-size: 13px;background: rgba(0,0,0,0.3);width: 100%;display: flex;justify-content: space-between;align-items: center;position: relative;}
+
+        /* Responsive Adjustments (Footer only) */
+        @media (max-width: 600px) {
+            .footer {
+                padding: 10px 20px;
+                font-size: 11px;
+                flex-direction: column; 
+            }
+            .footer-left, .footer-right {
+                text-align: center;
+                width: 100%;
+                margin: 2px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard" id="dashboard"></div>
+
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal">
+            <h2 id="modal-title"></h2>
+            <div class="topic-list" id="topic-list"></div>
+            <button class="close-btn" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            This is for education purpose only.
+        </div>
+        <div class="footer-right">
+            Thank you Parmar Sir 🙏
+        </div>
+    </footer>
+
+    <script src="notesData.js"></script> 
+
+    <script>
+        const dashboard = document.getElementById('dashboard');
+        const modalBg = document.getElementById('modal-bg');
+        const modalTitle = document.getElementById('modal-title');
+        const topicList = document.getElementById('topic-list');
+        const closeBtn = document.getElementById('close-btn');
+
+        // Check if the 'subjects' variable is loaded from notesData.js
+        if (typeof subjects !== 'undefined') {
+             subjects.forEach((sub) => { 
+                const card = document.createElement('div');
+                card.className = `card ${sub.color}`;
+                
+                const title = document.createElement('h3');
+                title.textContent = sub.title;
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = `Total Notes: ${sub.notes.length}`; 
+                
+                card.appendChild(title);
+                card.appendChild(hint);
+                dashboard.appendChild(card);
+
+                card.addEventListener('click', () => {
+                    openModal(sub);
+                });
+            });
+
+            function openModal(subject){
+                modalTitle.textContent = subject.title + ' Notes';
+                topicList.innerHTML = '';
+                
+                subject.notes.forEach(note => {
+                    const link = document.createElement('a');
+                    link.className = 'topic-btn';
+                    link.textContent = note.name;
+                    
+                    link.href = note.link; 
+                    link.target = '_blank';
+                    
+                    topicList.appendChild(link);
+                });
+                
+                // Show modal
+                modalBg.classList.add('active');
+            }
+
+            // Close modal functions
+            closeBtn.addEventListener('click',()=>modalBg.classList.remove('active'));
+            // Close modal when clicking outside
+            modalBg.addEventListener('click',(e)=>{if(e.target===modalBg) modalBg.classList.remove('active');});
+            
+        } else {
+             dashboard.innerHTML = "<h2 style='color: white; text-align: center; margin-top: 50px;'>Notes failed to load. Please check notesData.js.</h2>";
+        }
+    </script>
+</body>
+</html>
