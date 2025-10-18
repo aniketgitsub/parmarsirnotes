@@ -10,24 +10,32 @@ const subjects = [
 
         notes: [
 
-            // Geography Notes
+            // Geography Notes (With Numbering Added)
 
-            { name: '🌌 SOLAR SYSTEM Notes', link: 'https://drive.google.com/file/d/1oga0Z6CXNJh31XiK1sp9g6c_sLHsaqTe/view?usp=drive_link' },
+            { name: '1. 🌌 SOLAR SYSTEM Notes', link: 'https://drive.google.com/file/d/1oga0Z6CXNJh31XiK1sp9g6c_sLHsaqTe/view?usp=drive_link' },
 
-            { name: '📍 LATITUDE AND LONGITUDE', link: 'https://drive.google.com/file/d/1GPA4WC5YbMdLASvmTjgK9IXUBGlTQyHs/view?usp=drive_link' },
+            { name: '2. 📍 LATITUDE AND LONGITUDE', link: 'https://drive.google.com/file/d/1GPA4WC5YbMdLASvmTjgK9IXUBGlTQyHs/view?usp=drive_link' },
 
-            { name: '🌋 ROCKS AND VOLCANOES', link: 'https://drive.google.com/file/d/1UWh1MSoa5CxRl37pLbkERXWeALuu0VoR/view?usp=drive_link' },
+            { name: '3. 🌋 ROCKS AND VOLCANOES', link: 'https://drive.google.com/file/d/1UWh1MSoa5CxRl37pLbkERXWeALuu0VoR/view?usp=drive_link' },
 
-            { name: "🌍 EARTH'S INTERIOR & PLATE TECHTONICS", link: 'https://drive.google.com/file/d/1jOtWa67ev4oHCO21J-YKB0iClP_y0NR5/view?usp=drive_link' },
+            { name: "4. 🌍 EARTH'S INTERIOR & PLATE TECHTONICS", link: 'https://drive.google.com/file/d/1jOtWa67ev4oHCO21J-YKB0iClP_y0NR5/view?usp=drive_link' },
 
-            { name: '🗺️ CONTINENT AND OCEAN ', link: 'https://drive.google.com/file/d/1XI07VXPzW63qpiXDxZ4wEfTU5cvSHdEP/view?usp=drive_link' },
+            { name: '5. 🗺️ CONTINENT AND OCEAN ', link: 'https://drive.google.com/file/d/1XI07VXPzW63qpiXDxZ4wEfTU5cvSHdEP/view?usp=drive_link' },
 
-            { name: '🏞️ GEOMORPHIC PROCESS', link: 'https://drive.google.com/file/d/1rWFwiTl4buw2E3sad3_xlmIRKYwylzqF/view?usp=drive_link' },
+            { name: '6. 🏞️ GEOMORPHIC PROCESS', link: 'https://drive.google.com/file/d/1rWFwiTl4buw2E3sad3_xlmIRKYwylzqF/view?usp=drive_link' },
+             
+            { name: '7. 🏔️ LANDFORMS', link: 'https://drive.google.com/file/d/1Cy-sASIWLP8hwBN3IU8x6AZJTDiNRAAA/view?usp=drive_link' },
 
-            { name: '🌬️ ATMOSPHERE', link: 'https://drive.google.com/file/d/1tG5H4ikKXW4NU3527NsxMqLSH7L_Xq2L/view?usp=drive_link' }, // Separated topic
+            { name: '8. 🌬️ ATMOSPHERE', link: 'https://drive.google.com/file/d/1tG5H4ikKXW4NU3527NsxMqLSH7L_Xq2L/view?usp=drive_link' },
+            
+            // --- NEW TOPICS (Reordered and Numbered) ---
 
-            { name: '🏔️ LANDFORMS', link: 'https://drive.google.com/file/d/1Cy-sASIWLP8hwBN3IU8x6AZJTDiNRAAA/view?usp=drive_link' }   // Separated topic
+            { name: '9. 💨 WINDS', link: 'https://drive.google.com/file/d/1NcrXMEfZ6eDZwCo8uAvji0O9RAId3R_1/view?usp=drive_link' }, 
 
+            { name: '10. 🌧️ CONDENSATION AND PRECIPITATION', link: 'https://drive.google.com/file/d/1Fn2ILFHVO2660e6rwuhvP6GbEMNEhv1m/view?usp=drive_link' },
+            
+            { name: '11. 🌀 CYCLONES AND 🌊 OCEAN CURRENTS', link: 'https://drive.google.com/file/d/11-zqvQpecutHVxd5NbMSq1pfl7vp6NPO/view?usp=drive_link' }
+            
         ]
 
     },
