@@ -34,7 +34,16 @@ const subjects = [
 
             { name: '10. 🌧️ CONDENSATION AND PRECIPITATION', link: 'https://drive.google.com/file/d/1Fn2ILFHVO2660e6rwuhvP6GbEMNEhv1m/view?usp=drive_link' },
             
-            { name: '11. 🌀 CYCLONES AND 🌊 OCEAN CURRENTS', link: 'https://drive.google.com/file/d/11-zqvQpecutHVxd5NbMSq1pfl7vp6NPO/view?usp=drive_link' }
+            { name: '11. 🌀 CYCLONES AND 🌊 OCEAN CURRENTS', link: 'https://drive.google.com/file/d/11-zqvQpecutHVxd5NbMSq1pfl7vp6NPO/view?usp=drive_link' },
+            
+            // --- NEW INDIA GEOGRAPHY TOPICS (With updated emojis) ---
+            // 🛑 IMPORTANT: Replace 'YOUR_LINK_HERE...' with the actual Google Drive links for your notes.
+            
+            { name: '12. 🇮🇳 INDIA AND ITS LOCATION', link: 'https://drive.google.com/file/d/1y4G6HSFpk985PJPIxhyHrbZzrOJZr7jH/view?usp=drive_link' }, 
+
+            { name: '13. 🏔️ HIMALAYAS', link: 'https://drive.google.com/file/d/1Vq_iafJ6VUiT96mYm_oJXklQsEONN8bo/view?usp=drive_link' }, // Updated emoji
+            
+            { name: '14. 🏞️ PENINSULAR PLATEAU', link: 'https://drive.google.com/file/d/1w_ejNQ1r7xrOLx92151pXXDyVG2tOWFU/view?usp=drive_link' } // Updated emoji
             
         ]
 
