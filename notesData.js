@@ -20,31 +20,34 @@ const subjects = [
 
             { name: "4. 🌍 EARTH'S INTERIOR & PLATE TECHTONICS", link: 'https://drive.google.com/file/d/1jOtWa67ev4oHCO21J-YKB0iClP_y0NR5/view?usp=drive_link' },
 
-            { name: '5. 🗺️ CONTINENT AND OCEAN ', link: 'https://drive.google.com/file/d/1XI07VXPzW63qpifE_8604_l-7lY4oM3c/view?usp=drive_link' },
+            { name: '5. 🗺️ CONTINENT AND OCEAN ', link: 'https://drive.google.com/file/d/1XI07VXPzW63qpiXDxZ4wEfTU5cvSHdEP/view?usp=drive_link' },
 
-            { name: '6. 💨 ATMOSPHERE AND PRESSURE', link: 'https://drive.google.com/file/d/1vQ5pGvL912iFzH-J9yT9J6q17r4T9nU_/view?usp=drive_link' },
+            { name: '6. 🏞️ GEOMORPHIC PROCESS', link: 'https://drive.google.com/file/d/1rWFwiTl4buw2E3sad3_xlmIRKYwylzqF/view?usp=drive_link' },
+             
+            { name: '7. 🏔️ LANDFORMS', link: 'https://drive.google.com/file/d/1Cy-sASIWLP8hwBN3IU8x6AZJTDiNRAAA/view?usp=drive_link' },
 
-            { name: '7. ☁️ CYCLONE AND RAINFALL', link: 'https://drive.google.com/file/d/1vG5d-79eQ1q8d1n6tJ17jX9rT9x6U0N_/view?usp=drive_link' },
-
-            { name: '8. 🌊 OCEAN CURRENTS AND TIDES', link: 'https://drive.google.com/file/d/1G4h8b2J8c-9L-41s7d4P7x3q1R-3J6R_/view?usp=drive_link' },
-
-            { name: '9. 🌬️ WINDS AND LOCAL WINDS', link: 'https://drive.google.com/file/d/1F4h8b2J8c-9L-41s7d4P7x3q1R-3J6R_/view?usp=drive_link' },
-
-            { name: '10. ☔ INDIAN MONSOON', link: 'https://drive.google.com/file/d/1q6Q4hP6XN4K0Y3p1jR5rG3xW9tH2vF7E/view?usp=drive_link' },
-
-            { name: '11. 🌾 SOILS', link: 'https://drive.google.com/file/d/1G4h8b2J8c-9L-41s7d4P7x3q1R-3J6R_/view?usp=drive_link' },
-
-            { name: '12. 🌲 VEGETATION', link: 'https://drive.google.com/file/d/1J4h8b2J8c-9L-41s7d4P7x3q1R-3J6R_/view?usp=drive_link' },
+            { name: '8. 🌬️ ATMOSPHERE', link: 'https://drive.google.com/file/d/1tG5H4ikKXW4NU3527NsxMqLSH7L_Xq2L/view?usp=drive_link' },
             
-            { name: '13. ⛰️ HIMALAYAN MOUNTAINS', link: 'https://drive.google.com/file/d/1Vq_iafJ6VUiT96mYm_oJXklQsEONN8bo/view?usp=drive_link' }, // Updated emoji
+            // --- NEW TOPICS (Reordered and Numbered) ---
+
+            { name: '9. 💨 WINDS', link: 'https://drive.google.com/file/d/1NcrXMEfZ6eDZwCo8uAvji0O9RAId3R_1/view?usp=drive_link' }, 
+
+            { name: '10. 🌧️ CONDENSATION AND PRECIPITATION', link: 'https://drive.google.com/file/d/1Fn2ILFHVO2660e6rwuhvP6GbEMNEhv1m/view?usp=drive_link' },
+            
+            { name: '11. 🌀 CYCLONES AND 🌊 OCEAN CURRENTS', link: 'https://drive.google.com/file/d/11-zqvQpecutHVxd5NbMSq1pfl7vp6NPO/view?usp=drive_link' },
+            
+            // --- NEW INDIA GEOGRAPHY TOPICS (With updated emojis) ---
+            // 🛑 IMPORTANT: Replace 'YOUR_LINK_HERE...' with the actual Google Drive links for your notes.
+            
+            { name: '12. 🇮🇳 INDIA AND ITS LOCATION', link: 'https://drive.google.com/file/d/1y4G6HSFpk985PJPIxhyHrbZzrOJZr7jH/view?usp=drive_link' }, 
+
+            { name: '13. 🏔️ HIMALAYAS', link: 'https://drive.google.com/file/d/1Vq_iafJ6VUiT96mYm_oJXklQsEONN8bo/view?usp=drive_link' }, // Updated emoji
             
             { name: '14. 🏞️ PENINSULAR PLATEAU', link: 'https://drive.google.com/file/d/1w_ejNQ1r7xrOLx92151pXXDyVG2tOWFU/view?usp=drive_link' }, // Updated emoji
-            
-            // --- NEW TOPICS ADDED BELOW ---
+
             { name: '15. 🏝️ PLAINS AND ISLANDS', link: 'https://drive.google.com/file/d/1THfAO6cZ6svUa2q7edel5VWCL4FH0omz/view?usp=drive_link' },
 
-            { name: '16. 🌊 HIMALAYAN & PENINSULAR RIVER SYSTEMS (DRAINAGE)', link: 'https://drive.google.com/file/d/1xBVEiQWi1XrBj8f-e0zKIK0km5so170S/view?usp=drive_link' }
-            // -----------------------------
+            { name: '16. 🌊 HIMALAYAN RIVER SYSTEMS ', link: 'https://drive.google.com/file/d/1xBVEiQWi1XrBj8f-e0zKIK0km5so170S/view?usp=drive_link' }
         ]
 
     },
